@@ -73,4 +73,22 @@ router.put('/projects/:id', async (req, res) => {
     }
 })
 
+router.get('/projects/:id/actions', async (req, res) => {
+    try {
+        const project = await projectDB.get(req.params.id)
+        if (project) {
+            const actions = await projectDB.getProjectActions(req.params.id)
+            if (project && actions) {
+                res.status(200).json(actions)
+            } else {
+                res.status(404).json({ message: "The project with the specific id does not exist."})
+            }
+        } else {
+            res.status(400).json({ message: "Please provide the correct info for the project"})
+        }
+    } catch(error) {
+        res.status(500).json({ error: "Could not retrieve the project's actions."})
+    }
+})
+
 module.exports = router
