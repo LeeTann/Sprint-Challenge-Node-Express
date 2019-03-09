@@ -2,10 +2,13 @@ const express = require('express')
 const logger = require('morgan')
 const helmet = require('helmet')
 const cors = require('cors')
+const projectRoutes = require('./router/projectRoutes')
+const actionRoutes = require('./router/actionRoutes')
 
 const server = express()
 
 server.use(express.json(), logger('dev'), helmet(), cors())
+server.use('/api', projectRoutes, actionRoutes)
 
 server.get('/', (req, res) => {
     res.send('Hello from Node and Express Sprint Challenge')
