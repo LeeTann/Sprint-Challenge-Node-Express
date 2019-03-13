@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
 
-class App extends Component {
+ class App extends Component {
   constructor() {
     super()
     this.state = {
@@ -10,7 +10,7 @@ class App extends Component {
     }
   }
 
-  getProjects = () => {
+   getProjects = () => {
     axios.get('http://localhost:9000/api/projects')
     .then(res => {
       console.log(res)
@@ -21,11 +21,11 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
+   componentDidMount() {
     this.getProjects()
   }
- 
-  render() {
+
+   render() {
     console.log(this.state)
     return (
       <div className="App">
@@ -41,5 +41,4 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+ export default App;
